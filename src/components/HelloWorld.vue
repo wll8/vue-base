@@ -111,9 +111,9 @@ export default {
   },
   methods: {
     async getUser() {
-      const data = await this.$http.get(`/user`)
-      alert(JSON.stringify(data))
-    }
+      const data = await this.$http.get(`/user`);
+      alert(JSON.stringify(data));
+    },
   },
 };
 </script>
