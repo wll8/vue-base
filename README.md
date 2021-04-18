@@ -1,5 +1,5 @@
 # vue-base
-为了便于初始化项目, 维护了一个基于 vue@2.x 的基础框架, 目前有以下特性:
+为了便于初始化项目, 维护了一个基于 [vue@2.x](https://cn.vuejs.org/v2/guide/) 的基础框架, 目前有以下特性:
 
 - [axios](https://github.com/axios/axios) http 请求封装
 - [less](http://lesscss.org/) css 预处理器及全局变量
@@ -9,6 +9,7 @@
 ## 克隆项目
 ``` sh
 git clone --depth=1 https://github.com/wll8/vue-base
+cd vue-base
 ```
 
 ## 安装依赖
