@@ -14,5 +14,14 @@ module.exports = util => {
     replayPort: 9001,
     apiWeb: './apiWeb.json',
     guard: true,
+    api: {
+      '/api/user': {
+        success: true,
+        data: {
+          name: `张三`,
+          age: 18,
+        },
+      },
+    },
   }
 }

@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <button @click="getUser">getUser</button>
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
@@ -107,6 +108,12 @@ export default {
   name: "HelloWorld",
   props: {
     msg: String,
+  },
+  methods: {
+    async getUser() {
+      const data = await this.$http.get(`/user`)
+      alert(JSON.stringify(data))
+    }
   },
 };
 </script>
