@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "mm": "node ./node_modules/.bin/mm",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "mm": "npx mockm --cwd=mm"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -28,11 +28,11 @@
     "eslint-plugin-vue": "^6.2.2",
     "less": "^3.13.1",
     "less-loader": "^5.0.0",
-    "mockm": "^1.1.25-alpha.6",
     "prettier": "^2.2.1",
     "style-resources-loader": "^1.4.1",
     "vue-cli-plugin-style-resources-loader": "^0.1.5",
-    "vue-template-compiler": "^2.6.12"
+    "vue-template-compiler": "^2.6.12",
+    "mockm": "1.1.25-alpha.16"
   },
   "eslintConfig": {
     "root": true,
