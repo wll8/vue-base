@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "serve": "cross-env VUE_APP_ENV=dev vue-cli-service serve",
+    "build": "cross-env VUE_APP_ENV=prod vue-cli-service build",
+    "build:test": "cross-env VUE_APP_ENV=test vue-cli-service build",
     "start": "run-p serve mm",
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "getApi": "swagger-typescript-api -p http://httpbin.org/spec.json -o src/http -n autoApi --js --axios",
     "mm": "npx mockm --cwd=mm"
   },
   "dependencies": {
@@ -24,6 +26,7 @@
     "@vue/cli-service": "^4.5.12",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.3",
     "eslint": "^6.8.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^6.2.2",
@@ -53,6 +56,7 @@
       "prettier/prettier": [
         "error",
         {
+          "singleQuote": true,
           "semi": false
         }
       ],

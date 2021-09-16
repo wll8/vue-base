@@ -28,8 +28,14 @@ module.exports = util => {
         },
       },
     },
-    static: [],
-    resHandleReplay: ({req, res}) => wrapApiData({code: 200, data: {}}),
-    resHandleJsonApi: ({req, res: {statusCode: code}, data}) => wrapApiData({code, data}),
+    static: [
+      {
+        path: `/web/`,
+        fileDir: `../dist/`,
+      },
+    ],
+    resHandleReplay: ({ req, res }) => wrapApiData({ code: 200, data: {} }),
+    resHandleJsonApi: ({ req, res: { statusCode: code }, data }) =>
+      wrapApiData({ code, data }),
   }
 }
