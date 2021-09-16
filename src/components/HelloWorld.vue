@@ -105,17 +105,17 @@
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: `HelloWorld`,
   props: {
     msg: String,
   },
   methods: {
     async getUser() {
-      const data = await this.$http.get(`/user`);
-      alert(JSON.stringify(data));
+      const data = await this.$http.get(`/user`)
+      alert(JSON.stringify(data))
     },
   },
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
