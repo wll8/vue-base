@@ -18,11 +18,7 @@ npm install
 ```
 ### 运行开发服务
 ``` sh
-# 启动前端服务
-npm run serve
-
-# 启动接口联调工具
-npm run mm
+npm start
 ```
 
 ### 发布代码
