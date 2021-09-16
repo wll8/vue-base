@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
     <button @click="getUser">getUser</button>
+    <h1>{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
@@ -104,6 +104,8 @@
 </template>
 
 <script>
+import { api } from "@/http"
+
 export default {
   name: `HelloWorld`,
   props: {
@@ -111,7 +113,7 @@ export default {
   },
   methods: {
     async getUser() {
-      const data = await this.$http.get(`/user`)
+      const data = await api.custom.testApi({})
       alert(JSON.stringify(data))
     },
   },

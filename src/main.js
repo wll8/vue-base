@@ -1,13 +1,14 @@
 import Vue from "vue"
+import http from "@/http/index.js"
+import util from "@/util/index.js"
 import App from "./App.vue"
 import router from "./router"
 import store from "./store"
-import http from "./http/index.js"
 
-Vue.prototype.$http = http
+Vue.prototype.$util = util
 Vue.config.productionTip = false
-
-new Vue({
+Vue.use(http)
+window.$this = new Vue({
   router,
   store,
   render: (h) => h(App),

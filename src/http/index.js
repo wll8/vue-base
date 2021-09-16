@@ -1,13 +1,35 @@
-import axios from "axios"
 import config from "@/config.js"
+import util from "@/util/index.js"
+import * as autoApi from "./autoApi.js"
 
-// 创建axios实例
-const service = axios.create({
-  timeout: 10000, // 请求超时
+class CustomApi extends autoApi.Api {
+  custom = {
+    /**
+     * 这是一个自定义 API 测试用例
+     * @param {*} param0 参数
+     * @param {*} param0.beginDate 开始时间
+     * @param {*} param0.endDate 结束时间
+     */
+    testApi({ beginDate, endDate }) {
+      return api.instance.get(`/api/user`, {
+        params: {
+          beginDate,
+          endDate,
+        },
+      })
+    },
+  }
+}
+
+const api = new CustomApi({
+  axiosConfig: {
+    timeout: 10000, // 请求超时
+    baseURL: config.baseApi,
+  },
 })
 
 // request拦截器
-service.interceptors.request.use(
+api.instance.interceptors.request.use(
   (options) => {
     options.baseURL = config.baseApi
     return options
@@ -16,15 +38,29 @@ service.interceptors.request.use(
     Promise.reject(error)
   }
 )
-
 // response拦截器
-service.interceptors.response.use(
+api.instance.interceptors.response.use(
   (response) => {
-    return response.data.data
+    const data = response.data
+    if (util.isType(data, `blob`)) {
+      return response
+    } else if (data.data === undefined) {
+      return data
+    } else {
+      return response.data.data
+    }
   },
   (error) => {
     return Promise.reject(error)
   }
 )
 
-export default service
+const install = (Vue) => {
+  Vue.prototype.$http = api
+}
+
+export { api }
+
+export default {
+  install,
+}
