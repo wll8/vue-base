@@ -1,6 +1,6 @@
-import config from "@/config.js"
-import util from "@/util/index.js"
-import * as autoApi from "./autoApi.js"
+import config from '@/config.js'
+import util from '@/util/index.js'
+import * as autoApi from './autoApi.js'
 
 class CustomApi extends autoApi.Api {
   custom = {

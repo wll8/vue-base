@@ -52,6 +52,7 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
+    "ignorePatterns": ["autoApi.js"],
     "rules": {
       "prettier/prettier": [
         "error",
