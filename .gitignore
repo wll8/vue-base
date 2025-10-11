@@ -3,7 +3,7 @@
 node_modules
 /dist
 /httpData
-
+.claude
 
 # local env files
 .env.local

@@ -1,82 +1,30 @@
 {
-  "name": "vue-base",
+  "name": "vue3-base",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "cross-env VUE_APP_ENV=dev vue-cli-service serve",
-    "build": "cross-env VUE_APP_ENV=prod vue-cli-service build",
-    "build:test": "cross-env VUE_APP_ENV=test vue-cli-service build",
-    "start": "run-p serve mm",
-    "lint": "vue-cli-service lint",
-    "getApi": "swagger-typescript-api -p http://httpbin.org/spec.json -o src/http -n autoApi --js --axios",
+    "dev": "run-p serve mm",
+    "serve": "vite",
+    "build": "vite build",
+    "build:test": "vite build --mode test",
+    "preview": "vite preview",
+    "lint": "eslint . --fix",
     "mm": "npx mockm --cwd=mm"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "core-js": "^3.10.1",
-    "vue": "^2.6.12",
-    "vue-router": "^3.5.1",
-    "vuex": "^3.6.2"
+    "axios": "^1.7.9",
+    "pinia": "^2.3.0",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.5.12",
-    "@vue/cli-plugin-eslint": "^4.5.12",
-    "@vue/cli-plugin-router": "^4.5.12",
-    "@vue/cli-plugin-vuex": "^4.5.12",
-    "@vue/cli-service": "^4.5.12",
-    "@vue/eslint-config-prettier": "^6.0.0",
-    "babel-eslint": "^10.1.0",
-    "cross-env": "^7.0.3",
-    "eslint": "^6.8.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-vue": "^6.2.2",
-    "less": "^3.13.1",
-    "less-loader": "^5.0.0",
+    "@antfu/eslint-config": "^3.10.1",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "eslint": "^9.15.0",
+    "less": "^4.2.1",
+    "mockm": "^1.1.28",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.2.1",
-    "style-resources-loader": "^1.4.1",
-    "vue-cli-plugin-style-resources-loader": "^0.1.5",
-    "vue-template-compiler": "^2.6.12",
-    "mockm": "1.1.25-alpha.17"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended",
-      "@vue/prettier"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "ignorePatterns": ["autoApi.js"],
-    "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "singleQuote": true,
-          "semi": false
-        }
-      ],
-      "semi": [
-        "error",
-        "never"
-      ],
-      "quotes": [
-        "error",
-        "backtick"
-      ],
-      "no-unused-vars": "off",
-      "no-console": "off",
-      "no-debugger": "off"
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+    "vite": "^6.0.3"
+  }
 }

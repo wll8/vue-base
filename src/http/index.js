@@ -1,66 +1,77 @@
-import config from '@/config.js'
+import axios from 'axios'
 import util from '@/util/index.js'
-import * as autoApi from './autoApi.js'
 
-class CustomApi extends autoApi.Api {
-  custom = {
-    /**
-     * 这是一个自定义 API 测试用例
-     * @param {*} param0 参数
-     * @param {*} param0.beginDate 开始时间
-     * @param {*} param0.endDate 结束时间
-     */
-    testApi({ beginDate, endDate }) {
-      return api.instance.get(`/api/user`, {
-        params: {
-          beginDate,
-          endDate,
-        },
-      })
-    },
-  }
-}
-
-const api = new CustomApi({
-  axiosConfig: {
-    timeout: 10000, // 请求超时
-    baseURL: config.baseApi,
+// 创建 axios 实例
+const instance = axios.create({
+  baseURL: '/api',
+  timeout: 15000,
+  headers: {
+    'Content-Type': 'application/json;charset=UTF-8',
   },
 })
 
-// request拦截器
-api.instance.interceptors.request.use(
-  (options) => {
-    options.baseURL = config.baseApi
-    return options
+// 请求拦截器
+instance.interceptors.request.use(
+  (config) => {
+    // 可以在这里添加 token 等认证信息
+    // const token = localStorage.getItem('token')
+    // if (token) {
+    //   config.headers.Authorization = `Bearer ${token}`
+    // }
+    return config
   },
   (error) => {
-    Promise.reject(error)
-  }
+    console.error('请求错误:', error)
+    return Promise.reject(error)
+  },
 )
-// response拦截器
-api.instance.interceptors.response.use(
+
+// 响应拦截器
+instance.interceptors.response.use(
   (response) => {
     const data = response.data
     if (util.isType(data, `blob`)) {
       return response
-    } else if (data.data === undefined) {
+    }
+    else if (data.data === undefined) {
       return data
-    } else {
+    }
+    else {
       return response.data.data
     }
   },
   (error) => {
     return Promise.reject(error)
-  }
+  },
 )
-
-const install = (Vue) => {
-  Vue.prototype.$http = api
+// 封装 GET 请求
+function get(url, params = {}, config = {}) {
+  return instance.get(url, { params, ...config })
 }
 
-export { api }
+// 封装 POST 请求
+function post(url, data = {}, config = {}) {
+  return instance.post(url, data, config)
+}
 
+// 封装 PUT 请求
+function put(url, data = {}, config = {}) {
+  return instance.put(url, data, config)
+}
+
+// 封装 DELETE 请求
+function del(url, config = {}) {
+  return instance.delete(url, config)
+}
+
+// 导出封装的方法
 export default {
-  install,
+  get,
+  post,
+  put,
+  delete: del,
+  axios: instance,
 }
+
+// 导出工具函数
+export { util }

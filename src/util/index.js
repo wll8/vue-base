@@ -7,7 +7,7 @@
 function isType(data, type = undefined) {
   const dataType = Object.prototype.toString
     .call(data)
-    .match(/\s(.+)]/)[1]
+    .match(/\s(.+)\]/)[1]
     .toLowerCase()
   return type ? dataType === type.toLowerCase() : dataType
 }
